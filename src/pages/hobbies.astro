@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const hobbies = [
+  {
+    title: "Reading",
+    desc: "Lost in fictional worlds and expanding perspectives through non-fiction.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBMKhGdKPx-1CTpgokZJTPAm9dQiKSeZqc7r4riqWR98iLyOvHYn4mBwh_XcVfLsBrW89Rw2P4iCcy639CX9n7bijlfWiquxuLMPyFJ_5WkMrRrDd4ExaWhPaImvNG2RAjxri4QjFreKpu6OasyTMNqjcJy0jCv35nWn_v8EZgseXkmWbxAkSPfMlcfT2FQQqFqO_1dojIcprO9r6hLSIgVdZxh4qk0yDKJqQPxiMQvlct9aI9QNUaNDqiSPuHsl-L3zX0DDHWuYC4",
+    aspect: "aspect-[3/4]"
+  },
+  {
+    title: "Drawing",
+    desc: "Translating thoughts into visual structures through pencil and paper.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNRay6mEPspltYcElOZykHtV3ajEAFHxwQrnNo1znX9ZXXWb17SQhfXptmbsMVCaX0oeqDsaQ0sPjuWTRKIQlpCy4vin68Ln1VsO0TMqq2VvzHNxByPRqIHLCcg3tWKH_9yX3kyy_G4nGwWEk7cJO9QH5xMT3OOckX2VpAEnBt1W_LJ4pCLlZVJgDtvY-xZuX8JM4rtQStrQ12XNvAKXndWtNBMrQ5Y__2SXhztIl711DWcHclg5MbHRG57pjBzSwsp_GW5XIY7EY",
+    aspect: "aspect-square"
+  },
+  {
+    title: "Football",
+    desc: "Teamwork, strategy, and staying active on the pitch.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAM18t9BvXMpZgrT35520D5A9cvuhH5tOEcPoFXDwMHdtds7EZSWBRMFpkR8mH-_Ti6lJXeHdnuvS07U-CrNVcc1RiieFpY9l8ao7ewqGChBVJQ-UCpwF2L0cHnwnH6v7gh0aFXt8KJzXoHah0voK4dBlkhQ5VLVr0x9fCFhMx4rp_523gNfoBqgZwkF7W5k3B2EOQKlry42hHs6PEPir514SvmCDJFJVnvHZHoskUXq4JGL2M2GGYIXnv7q_NwVPBwdW-PNrZtNCA",
+    aspect: "aspect-[4/5]"
+  },
+  {
+    title: "Coding for Fun",
+    desc: "Building side projects and experimenting with new frameworks.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-iQ-AAa5F5CClYhdPkCrR4AH0gW_decnDVQc37lw4uUrz7jRTdi-j7iwFDmt90CzBB4-O3AiP9ugCzG_eEdPV9Nufr7f2LroQrfvuL-uJ1jevjwRfiA6jA-J6bH_AGcSP-pWerzyag6EEWSRvdxhMejlmFE9ivw96GY6qxJXwZxxGbUrIQRsHAkbeOvaqmIPXsj-BRCv5cHXBQJw1Tmr8Sh15VOCgIvBoHOXYXua-aO6VBQtxLyL0WgzJ6UIJ9EvvxT6g0f5QOkk",
+    aspect: "aspect-[16/11]"
+  },
+  {
+    title: "Photography",
+    desc: "Capturing moments, mastering light, and documenting journeys.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD1sdGSKJFCbBOhpogsSV6_OmA5MfjSRdlI4FiKfUNJExr-nC1fH13oxqjpVP-L59XOlawp0J6P4FoL8jzw3sio_phI2Uj3jLEQwa_HsV8jqu1ThLHe3rZ3jc0XAPHQPYqMaM1f4xHl0QMqDsET16rD_SRIPxgZLicG_cwqFCOMiyRSyINFWLvB9RMwZ7wVIGB2RUduZfi4kfb1IXEWAqGK_YqyPs4kfuU0VxjwCfKeU-g4iKmMUlofhc7jttQPEzmOgzcKp3lu5cE",
+    aspect: "aspect-[3/4]"
+  },
+  {
+    title: "Music",
+    desc: "Exploring electronic soundscapes and learning piano.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCxoP3dHpHsKbjh9Pj0fVklGcmF5AVx7Onx7KfYIW3HFu4O_Qy0ZkDWIIaAytGtzrZRVlzM74Ne55bnwpa7PgOAsQiIuh2PnC4W1BchlJ3DvXCOvCQ1HSGd098pWlGsa-1G0gKZhYjKvpaLv7rPs0aAXrxbDv7cME7QyKhGDa0OaiEaR5tpE1gDKRz6RpiF_emAQlQSpQP1UhpwiVxzYwVsb_0AGhBy16ds2BXwsceCqRg_Fp0T9L2cZJW1jcToyHJxMvHNz1uickw",
+    aspect: "aspect-[4/3]"
+  },
+  {
+    title: "Chess",
+    desc: "Exercising strategic thinking and pattern recognition.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCnUItShqphRr9yfg1vzEiLlepTX_PeXOPHSzP7jrQbRusPzZSV0yZEO7iljZoji3-09AdcintA9pkVKwJrqj6CaWWFlG29ep5Pz3iSMvFQcg8uSo19bkqffZ8Jxiw_GH0Bhl4gD9dii5BqwAJQJb8nz6cxUWvezqnPDlYqOmMOBKq901biypSdDIbBfqG8row1esFRCRz8MMgcojbN367TrClp8yFiejKi2NOj8sDmh3IApNkDdpPvkZ--TpGBQumoIDM1mgNSLVU",
+    aspect: "aspect-[3/5]"
+  }
+];
+---
+
+<Layout title="Hobbies | ALEX.DEV">
+  <main class="flex-grow pt-[120px] pb-16 px-6 md:px-8 max-w-[1440px] mx-auto w-full flex flex-col gap-12">
+    <!-- Page Header -->
+    <header class="text-center max-w-2xl mx-auto">
+      <h1 class="text-display-mobile md:text-display text-on-surface mb-4">Life Beyond Code.</h1>
+      <p class="text-body-lg text-on-surface-variant font-medium">A collection of creative pursuits, physical activities, and quiet moments that fuel my inspiration and keep me grounded.</p>
+    </header>
+    <!-- Masonry Gallery -->
+    <div class="masonry-grid w-full">
+      {hobbies.map((h) => (
+        <div class="masonry-item relative group overflow-hidden rounded-[24px] bg-surface-container-lowest p-2 shadow-ambient hover:shadow-ambient-hover transition-all duration-500 hover:-translate-y-1 cursor-pointer">
+          <div class={`relative overflow-hidden rounded-[16px] ${h.aspect}`}>
+            <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" src={h.img} alt={h.title} />
+            <div class="absolute inset-0 bg-inverse-surface/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h3 class="text-headline-md text-surface-container-lowest mb-1">{h.title}</h3>
+                <p class="text-body-md text-surface-container-low line-clamp-2 mb-4">{h.desc}</p>
+              </div>
+              <span class="material-symbols-outlined text-surface-container-lowest absolute top-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 delay-100">arrow_outward</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

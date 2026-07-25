@@ -1,0 +1,89 @@
+---
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/" || pathname === "/index.html";
+const isHobbies = pathname.includes("/hobbies");
+const isProjects = pathname.includes("/projects");
+---
+
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm transition-all duration-300 ease-in-out border-b border-outline-variant/10">
+  <div class="flex items-center justify-between max-w-container-max mx-auto px-gutter h-20">
+    <!-- Branding -->
+    <a href="/" class="font-extrabold text-primary hover:opacity-90 transition-opacity tracking-tight" style="font-size: 20px;">
+      ALEX.DEV
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden md:flex space-x-8">
+      <a 
+        class={`text-label-md font-semibold transition-colors duration-300 pb-1 border-b-2 ${
+          isHome 
+            ? "text-primary border-primary" 
+            : "text-on-surface-variant border-transparent hover:text-primary"
+        }`} 
+        href="/"
+      >
+        About
+      </a>
+      <a 
+        class={`text-label-md font-semibold transition-colors duration-300 pb-1 border-b-2 ${
+          isHobbies 
+            ? "text-primary border-primary" 
+            : "text-on-surface-variant border-transparent hover:text-primary"
+        }`} 
+        href="/hobbies"
+      >
+        Hobbies
+      </a>
+      <a 
+        class={`text-label-md font-semibold transition-colors duration-300 pb-1 border-b-2 ${
+          isProjects 
+            ? "text-primary border-primary" 
+            : "text-on-surface-variant border-transparent hover:text-primary"
+        }`} 
+        href="/projects"
+      >
+        Projects
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-toggle" class="text-primary focus:outline-none" aria-label="Toggle Menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-outline-variant/10 px-gutter py-4 flex flex-col space-y-4 shadow-md">
+    <a 
+      class={`text-label-md font-semibold ${isHome ? "text-primary" : "text-on-surface-variant"}`} 
+      href="/"
+    >
+      About
+    </a>
+    <a 
+      class={`text-label-md font-semibold ${isHobbies ? "text-primary" : "text-on-surface-variant"}`} 
+      href="/hobbies"
+    >
+      Hobbies
+    </a>
+    <a 
+      class={`text-label-md font-semibold ${isProjects ? "text-primary" : "text-on-surface-variant"}`} 
+      href="/projects"
+    >
+      Projects
+    </a>
+  </div>
+</nav>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={`${project.data.title} | ALEX.DEV`}>
+  <!-- Immersive Hero -->
+  <header class="relative w-full flex flex-col items-center justify-center overflow-hidden bg-surface-container py-[120px] pt-[160px]">
+    <div class="relative z-10 text-center px-6 max-w-container-max mx-auto w-full">
+      <div class="mb-8 w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-outline-variant/30">
+        <img alt={project.data.title} class="w-full h-auto object-cover" src={project.data.coverImage} />
+      </div>
+      <h1 class="text-display-mobile md:text-display text-on-surface mb-4">{project.data.title}</h1>
+      <p class="text-headline-md text-on-surface-variant mb-6 max-w-2xl mx-auto">{project.data.description}</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        {project.data.tags.map((tag) => (
+          <span class="bg-primary/10 text-primary font-semibold py-1 px-4 rounded-full border border-primary/20 backdrop-blur-md text-[13px]">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-container-max mx-auto px-6 md:px-8 py-16">
+    <!-- Rendered MDX Content -->
+    <article class="prose-content max-w-3xl mx-auto">
+      <Content />
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .prose-content :global(h2) {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-on-surface);
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+  .prose-content :global(p) {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 24px;
+  }
+  .prose-content :global(ul) {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .prose-content :global(li) {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 8px;
+  }
+</style>
