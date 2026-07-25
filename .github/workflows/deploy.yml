@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # Change this to your default branch name if it is not main
+    branches: [main]
 
 permissions:
   contents: read
@@ -18,6 +18,8 @@ jobs:
 
       - name: Install, build, and upload site
         uses: withastro/action@v3
+        with:
+          node-version: 22
 
   deploy:
     needs: build
